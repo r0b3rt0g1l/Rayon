@@ -10,7 +10,7 @@ const META = [
     eyebrow: `${municipalConfig.identidad.nombreCorto}, ${municipalConfig.identidad.estado}`,
     title: `Bienvenidos a ${municipalConfig.identidad.nombreCorto}`,
     subtitle:
-      "Pueblo de origen ópata y misión jesuita de 1639, en la región del Río Sonora.",
+      "Pueblo de origen Pima Bajo fundado en 1638, a orillas del Río San Miguel en el corazón de Sonora.",
     cta: { label: "Conoce el Municipio", href: "/turismo" },
     align: "center",
   },

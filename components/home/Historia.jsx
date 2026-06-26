@@ -41,8 +41,8 @@ function HeroBlock({ reduce }) {
           {municipalConfig.identidad.nombreOficial}
         </h2>
         <p className="mt-5 max-w-xl text-base text-white/85 lg:text-lg">
-          Pueblo de origen ópata y misión jesuita de 1639, en la región del
-          Río Sonora.
+          Pueblo de origen Pima Bajo fundado en 1638 como misión jesuita, a
+          orillas del Río San Miguel en el corazón de Sonora.
         </p>
       </motion.div>
     </div>
@@ -160,7 +160,26 @@ export function Historia({ portadaUrl } = {}) {
                 Historia
               </p>
               <div className="mt-3 space-y-3 font-serif text-[15px] leading-snug text-white lg:text-base">
-                <p>Información histórica del municipio en preparación.</p>
+                <p className="first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:font-display first-letter:text-6xl first-letter:font-bold first-letter:leading-[0.85] first-letter:text-[var(--color-dorado)]">
+                  Rayón fue fundada en 1638 por el misionero jesuita Pedro
+                  Pantoja, quien le dio el nombre de Nuestra Señora del Rosario
+                  de Nacameri. La zona había sido habitada por los Pima Bajos,
+                  pueblo que encontró en las márgenes del Río San Miguel su
+                  hogar durante siglos.
+                </p>
+                <p>
+                  En 1825, el nombre fue cambiado a Rayón en honor al general
+                  Ignacio López Rayón, héroe de la Independencia mexicana. En
+                  1850 se le otorgó la categoría de villa, consolidándose como
+                  un municipio de gran tradición en la región centro de Sonora.
+                </p>
+                <p>
+                  Hoy, Rayón es un municipio tranquilo a 110 km de Hermosillo,
+                  atravesado por el Río San Miguel y rodeado de paisajes de
+                  matorral sonorense. Su iglesia de Nuestra Señora del Rosario,
+                  en uso desde hace siglos, es el símbolo más vivo de su
+                  historia.
+                </p>
               </div>
             </motion.article>
 
