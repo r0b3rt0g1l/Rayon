@@ -1,0 +1,107 @@
+/* Organigrama jerárquico (2 niveles): arriba Presidencia + Sindicatura LADO A
+   LADO; abajo la fila de Regidurías. Conectores dibujados con bordes; el color
+   usa el token --color-border del design system; la geometría (px) es layout.
+   En móvil colapsa a espina vertical. */
+
+.tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Fila superior: Presidencia + Sindicatura a la par. El tronco sale del centro
+   de este grupo (la columna .tree está centrada) hacia la fila de Regidurías. */
+.heads {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+/* Tronco vertical: de la Presidencia al bus de los hijos */
+.trunk {
+  width: 2px;
+  height: 32px;
+  background: var(--color-border);
+}
+
+.children,
+.childrenFlat {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.childrenFlat {
+  gap: 1.5rem;
+}
+
+.child {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 32px 12px 0;
+}
+
+/* En modo "flat" (sin Presidencia) no hay conectores ni espacio superior */
+.childrenFlat .child {
+  padding-top: 0;
+}
+
+/* Bajada vertical hacia cada hijo (centro de la tarjeta) */
+.children .child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 32px;
+  background: var(--color-border);
+  transform: translateX(-50%);
+}
+
+/* Bus horizontal que une a los hijos; se recortan los extremos para que
+   abarque solo del centro del primer hijo al centro del último */
+.children .child::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-border);
+}
+.children .child:first-child::after {
+  left: 50%;
+}
+.children .child:last-child::after {
+  right: 50%;
+}
+.children .child:only-child::after {
+  display: none;
+}
+
+/* Móvil: el árbol horizontal se vuelve una espina vertical */
+@media (max-width: 639px) {
+  .heads {
+    flex-direction: column;
+    align-items: center;
+  }
+  .children {
+    flex-direction: column;
+    align-items: center;
+  }
+  .children .child {
+    padding: 24px 0 0;
+  }
+  .children .child::after {
+    display: none;
+  }
+  .children .child::before {
+    height: 24px;
+  }
+}
