@@ -26,7 +26,7 @@ import type {
 } from "./types";
 
 const MUNICIPIO_SLUG = process.env.NEXT_PUBLIC_MUNICIPIO_SLUG || "municipio";
-const TIMEOUT_MS = 8000;
+const TIMEOUT_MS = 30000;
 const REVALIDATE_S = 60;
 
 type FetchInit = RequestInit & { next?: { revalidate?: number } };
