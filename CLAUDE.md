@@ -1,10 +1,10 @@
-# CLAUDE.md — Portal Municipal de Baviácora
+# CLAUDE.md — Portal Municipal de Rayón
 
 Memoria de trabajo para Claude Code: contexto, reglas duras y estado actual del
 proyecto. Léelo antes de tocar el repo.
 
 ## Qué es
-Sitio oficial del **H. Ayuntamiento de Baviácora, Sonora** (administración 2024-2027):
+Sitio oficial del **H. Ayuntamiento de Rayón, Sonora** (administración 2024-2027):
 portal institucional público con gobierno, transparencia, turismo, noticias y servicios
 al ciudadano. Construido sobre `plantilla-municipal`, una plantilla reutilizable que se
 parametriza por municipio (`lib/municipalConfig.js`). Desarrollado por Northa Digital.
@@ -59,7 +59,7 @@ datos CONFIRMADOS**; lo no confirmado se queda en `null`/`''` con marca `<<PENDI
 **no se inventa**. Clonar a otro municipio = cambiar este archivo + tokens + slug.
 
 ## Color institucional (fix guinda/verde)
-La paleta de Baviácora es **verde/oro**, NO guinda/vino. Los nombres `--color-guinda*` se
+La paleta de Rayón es **verde/oro**, NO guinda/vino. Los nombres `--color-guinda*` se
 **heredan de la plantilla**; el valor real es verde:
 - `--color-guinda: #2D4F1B` (verde profundo), `-deep: #1F3813`, `-soft: #4A7C2E`; oro
   `--color-dorado: #E5B53D`.
@@ -84,7 +84,7 @@ La paleta de Baviácora es **verde/oro**, NO guinda/vino. Los nombres `--color-g
 - ✅ Identidad, contacto, redes (Facebook), cabildo + gabinete (8), paleta verde/oro,
   escudo HD, capa `lib/content`, JSON-LD, privacidad y a11y/lint a código-100.
 - ⏳ **Pendientes externos** (no de código): fotos reales del municipio; dominio
-  **baviacora.gob.mx** (hoy apunta a un WordPress viejo, falta migrar el DNS al portal);
+  **rayon.gob.mx** (hoy apunta a un WordPress viejo, falta migrar el DNS al portal);
   **Web3Forms** (clave de formularios — se hace al final).
 - ⏳ Datos `<<PENDIENTE>>` en `municipalConfig`: lema, fundación, métricas
   (superficie/altitud/IDH), horarios — entran cuando se confirmen.

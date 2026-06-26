@@ -1,6 +1,6 @@
-# Municipio de Baviácora, Sonora
+# Municipio de Rayón, Sonora
 
-Sitio oficial del **H. Ayuntamiento de Baviácora, Sonora**. Administración 2024-2027.
+Sitio oficial del **H. Ayuntamiento de Rayón, Sonora**. Administración 2024-2027.
 Construido sobre `plantilla-municipal` (Next.js App Router, React 19, Tailwind CSS 4).
 
 ## 🚀 Desarrollo local
@@ -18,7 +18,7 @@ Abrir [http://localhost:3000](http://localhost:3000).
 cp .env.example .env.local
 ```
 
-- `NEXT_PUBLIC_MUNICIPIO_SLUG=baviacora` — slug para los endpoints del CMS.
+- `NEXT_PUBLIC_MUNICIPIO_SLUG=rayon` — slug para los endpoints del CMS.
 - `NEXT_PUBLIC_SITE_URL` — URL canónica (sitemap, robots, SEO).
 - `NEXT_PUBLIC_API_URL` — backend CMS (opcional; vacío = solo fallbacks estáticos).
 - `WEB3FORMS_ACCESS_KEY` / `NEXT_PUBLIC_WEB3FORMS_KEY` — endpoint de formularios.

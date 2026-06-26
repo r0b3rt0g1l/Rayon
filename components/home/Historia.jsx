@@ -160,30 +160,7 @@ export function Historia({ portadaUrl } = {}) {
                 Historia
               </p>
               <div className="mt-3 space-y-3 font-serif text-[15px] leading-snug text-white lg:text-base">
-                <p className="first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:font-display first-letter:text-6xl first-letter:font-bold first-letter:leading-[0.85] first-letter:text-[var(--color-dorado)]">
-                  El territorio de Baviácora fue habitado por los indígenas
-                  ópatas. En 1637 el general Pedro de Perea explora la zona y,
-                  en 1639, el jesuita Fray Bartolomé Castaño funda la misión
-                  “Nuestra Señora de la (Purísima) Concepción”; el pueblo se
-                  llamó originalmente “La Purísima Concepción de Baviácora”.
-                </p>
-                <p>
-                  El nombre “Baviácora” es de origen ópata y las fuentes
-                  ofrecen varias interpretaciones —entre ellas “agua
-                  acorralada”, “lugar donde hay pastizales” o “hierba que nace
-                  en el agua”—, sin que ninguna se considere definitiva.
-                  Baviácora figura ya como ayuntamiento en 1829; el 13 de mayo
-                  de 1931 se rehabilita como municipio libre e independiente,
-                  tras haber dependido de Arizpe, y en 1932 cede parte de su
-                  territorio con la creación del municipio de Aconchi.
-                </p>
-                <p>
-                  En la vida cultural del municipio destaca el béisbol: el
-                  pueblo cuenta con su equipo, los “Chiltepineros”, que compite
-                  en la Liga del Río Sonora. Conserva además la tradición de la
-                  música norteña y la vestimenta vaquera típica de Sonora, así
-                  como arquitectura colonial que data de la época de la misión.
-                </p>
+                <p>Información histórica del municipio en preparación.</p>
               </div>
             </motion.article>
 
