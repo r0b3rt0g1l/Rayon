@@ -11,7 +11,7 @@ export const revalidate = 60;
 
 export const metadata = buildMetadata({
   title: "Turismo",
-  description: `Atractivos turísticos del ${municipalConfig.identidad.nombreOficial}: patrimonio colonial, naturaleza y la Ruta del Río Sonora.`,
+  description: `Atractivos turísticos del ${municipalConfig.identidad.nombreOficial}: patrimonio, naturaleza y cultura del municipio.`,
   path: "/turismo",
 });
 
@@ -26,8 +26,7 @@ export default async function TurismoPage() {
         fallback={{
           clave: "banner-turismo",
           titulo: `Descubre ${municipalConfig.identidad.nombreCorto}`,
-          descripcion:
-            "Patrimonio colonial de la época de la misión, naturaleza del Río Sonora y monumentos del municipio. Baviácora forma parte de la Ruta del Río Sonora (COFETUR) y, desde 2011, de la Ruta Gastronómica.",
+          descripcion: `Descubre el patrimonio, la naturaleza y la cultura de ${municipalConfig.identidad.nombreCorto}. El catálogo de atractivos turísticos del municipio está en preparación.`,
           imagenUrl: null,
           activo: true,
         }}
@@ -74,9 +73,8 @@ export default async function TurismoPage() {
             {gastronomia.platillos.length === 0 &&
             gastronomia.dulces.length === 0 ? (
               <p className="mt-6 text-sm leading-relaxed text-[var(--color-text-secondary)]">
-                Baviácora forma parte de la Ruta Gastronómica del Río Sonora
-                (desde 2011). El catálogo de platillos y dulces típicos del
-                municipio está en preparación.
+                El catálogo de platillos y dulces típicos de{" "}
+                {municipalConfig.identidad.nombreCorto} está en preparación.
               </p>
             ) : (
               <div className="mt-6 grid gap-4">
