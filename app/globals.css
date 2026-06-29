@@ -7,9 +7,9 @@
    fondos claros, nunca como texto normal sobre blanco. */
 
 @theme {
-  /* Paleta de marca carbón/cobre de Baviácora (var nombres heredados de la
-     plantilla: 'guinda' = color institucional primario = carbón;
-     'dorado' = acento = cobre). */
+  /* Paleta blanco/cobre (var nombres heredados de la plantilla: 'guinda' =
+     primario institucional = carbón, para títulos/encabezados; 'dorado' =
+     acento de marca = cobre). Fondo base blanco. */
   --color-guinda: #23292E;
   --color-guinda-deep: #15191D;
   --color-guinda-soft: #3A434B;
@@ -31,7 +31,7 @@
   --color-text-secondary: #4A4A4A;
   --color-text-muted: #6B6B6B;
   --color-bg: #FFFFFF;
-  --color-surface: #FFFFFF;
+  --color-surface: #FAFAF8; /* blanco-hueso para secciones alternas */
   --color-border: #E5E5E5;
   --color-cream: #F4EFE7;
 

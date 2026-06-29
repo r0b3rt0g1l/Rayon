@@ -1,9 +1,10 @@
 import { getContenido } from "@/lib/content";
 
 // Encabezado de página reutilizable y editable desde el CMS por `clave`.
-// Estilo minimalista oscuro (como el hero del home): fondo guinda-deep, texto
-// blanco, eyebrow dorado, alineado a la izquierda. Solo título+descripción vienen
-// del CMS; si la clave no existe (o está inactiva) usa el fallback del repo.
+// Estilo claro (paleta blanco/cobre): fondo blanco-hueso (--color-surface) con
+// borde inferior, título oscuro, eyebrow cobre, descripción gris, alineado a la
+// izquierda. Solo título+descripción vienen del CMS; si la clave no existe (o está
+// inactiva) usa el fallback del repo.
 // El eyebrow/badge/ancho y el contenido extra (children) se pasan por props.
 export async function PageHeader({
   clave,
@@ -23,7 +24,7 @@ export async function PageHeader({
       : fallbackDescripcion;
 
   return (
-    <header className="bg-[var(--color-guinda-deep)] text-white">
+    <header className="border-b border-[var(--color-border)] bg-[var(--color-surface)]">
       <div
         className={`mx-auto ${
           narrow ? "max-w-5xl" : "max-w-7xl"
@@ -33,13 +34,13 @@ export async function PageHeader({
           ? badge
           : eyebrow
             ? (
-              <p className="text-xs font-bold uppercase tracking-[0.32em] text-[var(--color-dorado)]">
+              <p className="text-xs font-bold uppercase tracking-[0.32em] text-[var(--color-dorado-700)]">
                 {eyebrow}
               </p>
             )
             : null}
         <h1
-          className={`mt-3 font-bold leading-tight tracking-tight text-balance text-white ${
+          className={`mt-3 font-bold leading-tight tracking-tight text-balance text-[var(--color-text)] ${
             compact ? "text-2xl md:text-3xl" : "text-3xl md:text-4xl lg:text-5xl"
           }`}
         >
@@ -47,7 +48,7 @@ export async function PageHeader({
         </h1>
         {descripcion ? (
           <p
-            className={`max-w-3xl leading-relaxed text-white/90 ${
+            className={`max-w-3xl leading-relaxed text-[var(--color-text-secondary)] ${
               compact ? "mt-2 text-sm md:text-base" : "mt-4 text-base md:text-lg"
             }`}
           >

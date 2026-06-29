@@ -193,7 +193,7 @@ export function HeroCarousel({ slides }) {
                         animate={{
                           width: isActive ? 32 : 8,
                           backgroundColor: isActive
-                            ? "#B5732E"
+                            ? "var(--color-dorado)"
                             : "rgba(255,255,255,0.55)",
                         }}
                         transition={{

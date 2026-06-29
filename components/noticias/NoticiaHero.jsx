@@ -11,7 +11,13 @@ export function NoticiaHero({ item, kind = "noticia", backHref = "/acciones-de-g
         {/* Banner de altura fija y uniforme. La foto se muestra COMPLETA al centro
             (object-contain) y el espacio sobrante se rellena con la MISMA foto
             difuminada + oscurecida (blurred backdrop), evitando barras negras. */}
-        <div className="relative isolate flex min-h-[320px] flex-col justify-end overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-guinda-deep)] text-white md:min-h-[420px]">
+        <div
+          className={`relative isolate flex min-h-[320px] flex-col justify-end overflow-hidden rounded-2xl border border-[var(--color-border)] md:min-h-[420px] ${
+            tieneFoto
+              ? "bg-[var(--color-guinda-deep)] text-white"
+              : "bg-[var(--color-bg)] text-[var(--color-text)]"
+          }`}
+        >
           {tieneFoto && (
             <>
               {/* Capa 1: fondo difuminado (misma foto, cubre todo, borrosa) */}
@@ -52,7 +58,11 @@ export function NoticiaHero({ item, kind = "noticia", backHref = "/acciones-de-g
           <div className="relative z-10 mx-auto w-full max-w-4xl px-5 py-7 sm:px-8 md:py-9">
             <Link
               href={backHref}
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-medium uppercase tracking-widest text-[var(--color-cream)] backdrop-blur-sm transition hover:border-white/40 hover:bg-white/15"
+              className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium uppercase tracking-widest backdrop-blur-sm transition ${
+                tieneFoto
+                  ? "border-white/20 bg-white/5 text-[var(--color-cream)] hover:border-white/40 hover:bg-white/15"
+                  : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-secondary)] hover:border-[var(--color-dorado)]/40 hover:bg-[var(--color-dorado)]/5"
+              }`}
             >
               <ArrowLeft aria-hidden="true" className="h-3.5 w-3.5" />
               Volver a {kind === "comunicado" ? "comunicados" : "acciones de gobierno"}
@@ -64,23 +74,39 @@ export function NoticiaHero({ item, kind = "noticia", backHref = "/acciones-de-g
                 {item.categoria}
               </span>
               {item.autor && (
-                <span className="text-[11px] uppercase tracking-widest text-[var(--color-cream)]/70">
+                <span
+                  className={`text-[11px] uppercase tracking-widest ${
+                    tieneFoto ? "text-[var(--color-cream)]/70" : "text-[var(--color-text-muted)]"
+                  }`}
+                >
                   · {item.autor}
                 </span>
               )}
             </div>
 
-            <h1 className="mt-4 text-balance font-display text-2xl font-bold leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
+            <h1
+              className={`mt-4 text-balance font-display text-2xl font-bold leading-tight tracking-tight md:text-4xl lg:text-5xl ${
+                tieneFoto ? "text-white" : "text-[var(--color-text)]"
+              }`}
+            >
               {item.titulo}
             </h1>
 
             {item.extracto && (
-              <p className="mt-4 max-w-3xl text-balance text-sm text-[var(--color-cream)]/90 md:text-lg">
+              <p
+                className={`mt-4 max-w-3xl text-balance text-sm md:text-lg ${
+                  tieneFoto ? "text-[var(--color-cream)]/90" : "text-[var(--color-text-secondary)]"
+                }`}
+              >
                 {item.extracto}
               </p>
             )}
 
-            <dl className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-[var(--color-cream)]/85">
+            <dl
+              className={`mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm ${
+                tieneFoto ? "text-[var(--color-cream)]/85" : "text-[var(--color-text-secondary)]"
+              }`}
+            >
               <div className="inline-flex items-center gap-2">
                 <Calendar aria-hidden="true" className="h-4 w-4" />
                 <dt className="sr-only">Fecha de publicación</dt>
