@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MapPin, ExternalLink } from "lucide-react";
 import { Breadcrumbs } from "@/components/seo/JsonLd";
 import { buildMetadata } from "@/lib/seo";
 import { municipalConfig } from "@/lib/municipalConfig";
@@ -119,8 +119,20 @@ export default async function AtractivoPage({ params }) {
               <MapaEmbed
                 lat={atractivo.coordenadas.lat}
                 lon={atractivo.coordenadas.lon}
+                mapsUrl={atractivo.mapsUrl}
                 label={`${atractivo.nombre} · ${municipalConfig.identidad.nombreCorto}`}
               />
+            ) : atractivo.mapsUrl ? (
+              <a
+                href={atractivo.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--color-cta-bg)] px-5 py-3 text-sm font-semibold text-[var(--color-cta-text)] shadow-[var(--shadow-card)] transition hover:bg-[var(--color-cta-bg-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-dorado)] focus-visible:ring-offset-2"
+              >
+                <MapPin aria-hidden="true" className="h-4 w-4" />
+                Ver en Google Maps
+                <ExternalLink aria-hidden="true" className="h-3.5 w-3.5" />
+              </a>
             ) : (
               <div className="rounded-2xl border border-dashed border-[var(--color-border)] bg-white p-6 text-sm italic text-[var(--color-text-muted)] shadow-[var(--shadow-card)]">
                 Ubicación exacta por confirmar con el municipio.

@@ -2,10 +2,12 @@ import { MapPin, ExternalLink } from "lucide-react";
 
 // `aspectClassName` permite override del ratio (p. ej. banner ancho en Contacto).
 // Default conserva el 16/10 usado en Turismo, así que esos consumidores no cambian.
-export function MapaEmbed({ lat, lon, label, zoom = 14, aspectClassName = "aspect-[16/10]" }) {
+export function MapaEmbed({ lat, lon, label, mapsUrl = null, zoom = 14, aspectClassName = "aspect-[16/10]" }) {
   if (lat == null || lon == null) return null;
   const src = `https://www.google.com/maps?q=${lat},${lon}&z=${zoom}&hl=es&output=embed`;
-  const externalUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
+  // Si el atractivo trae una URL curada de Google Maps, el enlace la prioriza;
+  // si no, se deriva de las coordenadas. Evita duplicar el botón en el detalle.
+  const externalUrl = mapsUrl || `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
 
   return (
     <figure className="overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white shadow-[var(--shadow-card)]">

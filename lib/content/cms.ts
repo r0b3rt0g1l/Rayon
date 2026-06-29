@@ -247,6 +247,7 @@ function mapAtractivo(item: RawCmsItem): Atractivo {
     galeria,
     coordenadas: lat != null && lon != null ? { lat, lon } : null,
     horario: item.horario || null,
+    mapsUrl: typeof item.mapsUrl === "string" && item.mapsUrl ? item.mapsUrl : null,
     destacado: Boolean(item.destacado),
   };
 }

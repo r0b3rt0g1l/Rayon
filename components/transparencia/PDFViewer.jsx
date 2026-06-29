@@ -18,11 +18,13 @@ export function PDFViewer({
   const open = isControlled ? openProp : internalOpen;
   const setOpen = isControlled ? onOpenChange : setInternalOpen;
 
-  const iframeSrc = !pdfUrl
-    ? ""
-    : pdfUrl.startsWith("http")
-      ? pdfUrl
-      : `${pdfUrl}#toolbar=1&navpanes=0&view=FitH`;
+  // Los navegadores móviles NO renderizan PDFs embebidos en <iframe> (el modal
+  // saldría en blanco). Se envuelve el PDF en Google Docs Viewer, que renderiza
+  // en móvil y escritorio. Requiere que el PDF sea público (lo es). Los botones
+  // "Descargar"/"Pestaña" usan la URL directa como respaldo si gview falla.
+  const iframeSrc = pdfUrl
+    ? `https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl)}&embedded=true`
+    : "";
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
