@@ -189,16 +189,30 @@ export async function cmsHeroSlides(): Promise<HeroSlide[] | null> {
   const activos = data.filter((i) => i && i.activo === true && i.imagenUrl);
   if (activos.length === 0) return [];
   activos.sort((a, b) => (a.orden ?? 0) - (b.orden ?? 0));
-  return activos.map((item) => ({
-    id: item.id,
-    eyebrow: item.etiqueta || "",
-    title: item.titulo,
-    subtitle: item.subtitulo || "",
-    cta: { label: item.textoBoton || "Ver más", href: item.linkBoton || "/" },
-    image: item.imagenUrl,
-    alt: item.titulo,
-    align: "center",
-  }));
+  return activos.map((item) => {
+    // El botón (cta) solo existe si hay un linkBoton REAL. Sin link → cta null → el
+    // portal (que ya condiciona slide.cta?.href) NO pinta el botón fantasma "Ver más"→"/".
+    const href =
+      typeof item.linkBoton === "string" ? item.linkBoton.trim() : "";
+    const cta = href
+      ? {
+          label:
+            (typeof item.textoBoton === "string" && item.textoBoton.trim()) ||
+            "Ver más",
+          href,
+        }
+      : null;
+    return {
+      id: item.id,
+      eyebrow: item.etiqueta || "",
+      title: item.titulo,
+      subtitle: item.subtitulo || "",
+      cta,
+      image: item.imagenUrl,
+      alt: item.titulo,
+      align: "center",
+    };
+  });
 }
 
 export async function cmsNoticias(): Promise<Noticia[] | null> {

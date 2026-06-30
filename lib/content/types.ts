@@ -100,7 +100,7 @@ export interface HeroSlide {
   eyebrow: string;
   title: string;
   subtitle: string;
-  cta: HeroSlideCta;
+  cta: HeroSlideCta | null;
   image: string;
   alt: string;
   align: string;
