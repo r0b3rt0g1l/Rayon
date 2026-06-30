@@ -18,14 +18,11 @@ export function PDFViewer({
   const open = isControlled ? openProp : internalOpen;
   const setOpen = isControlled ? onOpenChange : setInternalOpen;
 
-  // Los navegadores móviles NO renderizan PDFs embebidos en <iframe> (el modal
-  // saldría en blanco). Se envuelve el PDF en Google Docs Viewer, que renderiza
-  // en móvil y escritorio. Requiere que el PDF sea público (lo es). Los botones
-  // "Descargar"/"Pestaña" usan la URL directa como respaldo si gview falla.
-  const iframeSrc = pdfUrl
-    ? `https://docs.google.com/gview?url=${encodeURIComponent(pdfUrl)}&embedded=true`
-    : "";
-
+  // El PDF de Cloudinary es embebible directo (200, application/pdf, sin
+  // X-Frame-Options ni CSP de frame, CORS *). En ESCRITORIO el navegador lo
+  // renderiza nativo dentro del <iframe>. En MÓVIL los navegadores NO embeben
+  // PDFs en iframe (saldría en blanco), así que mostramos un botón grande que
+  // abre el PDF en pestaña nueva. Sin Google Docs Viewer (deprecado/inestable).
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       {trigger ? <Dialog.Trigger asChild>{trigger}</Dialog.Trigger> : null}
@@ -99,15 +96,55 @@ export function PDFViewer({
                 </div>
 
                 <div className="relative flex-1 bg-[var(--color-bg)]">
-                  <iframe
-                    src={iframeSrc}
-                    title={title}
-                    className="absolute inset-0 h-full w-full border-0"
-                    loading="lazy"
-                  />
+                  {pdfUrl ? (
+                    <>
+                      {/* ESCRITORIO (md+): PDF embebido directo de Cloudinary, sin gview */}
+                      <iframe
+                        src={pdfUrl}
+                        title={title}
+                        className="absolute inset-0 hidden h-full w-full border-0 md:block"
+                        loading="lazy"
+                      />
+                      {/* MÓVIL (<md): los navegadores móviles no embeben PDFs en
+                          iframe → CTA claro que abre el PDF en pestaña nueva */}
+                      <div className="flex h-full flex-col items-center justify-center gap-5 px-6 text-center md:hidden">
+                        <div className="rounded-2xl bg-[var(--color-guinda)]/10 p-4 text-[var(--color-guinda)]">
+                          <FileText className="h-10 w-10" aria-hidden="true" />
+                        </div>
+                        <div>
+                          <p className="font-display text-base font-bold text-[var(--color-text)]">
+                            {title}
+                          </p>
+                          <p className="mt-1 text-sm text-[var(--color-text-secondary)]">
+                            El documento se abre en una pestaña nueva de tu navegador.
+                          </p>
+                        </div>
+                        <a
+                          href={pdfUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex min-h-[48px] items-center gap-2 rounded-full bg-[var(--color-cta-bg)] px-6 py-3 text-sm font-bold text-white shadow-md transition hover:bg-[var(--color-cta-bg-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-dorado)] focus-visible:ring-offset-2"
+                        >
+                          <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                          Abrir documento
+                        </a>
+                        <a
+                          href={pdfUrl}
+                          download
+                          className="text-xs font-semibold text-[var(--color-dorado-700)] underline-offset-2 hover:underline"
+                        >
+                          o descargar el PDF
+                        </a>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex h-full items-center justify-center px-6 text-center text-sm text-[var(--color-text-secondary)]">
+                      Documento no disponible.
+                    </div>
+                  )}
                 </div>
 
-                <div className="hidden border-t border-[var(--color-border)] bg-white px-4 py-2 text-[11px] text-[var(--color-text-muted)] sm:block">
+                <div className="hidden border-t border-[var(--color-border)] bg-white px-4 py-2 text-[11px] text-[var(--color-text-muted)] md:block">
                   Si el documento no se muestra, usa el botón{" "}
                   <strong>Pestaña</strong> o <strong>Descargar</strong> arriba.
                 </div>
