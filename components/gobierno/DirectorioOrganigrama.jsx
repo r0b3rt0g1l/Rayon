@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Organigrama } from "@/components/gobierno/Organigrama";
 import { PersonDetailModal } from "@/components/gobierno/PersonDetailModal";
-import { derivePresidente, deriveSindica } from "@/lib/cabildo";
+import { derivePresidente, deriveSindica, deriveSubordinados } from "@/lib/cabildo";
 
 // Pinta el Directorio como organigrama (mismo estilo que el Cabildo) y CONSERVA el
 // modal de detalle al hacer clic en cualquier persona. Recibe la lista ya filtrada y
@@ -22,11 +22,10 @@ export function DirectorioOrganigrama({ people = [] }) {
 
   const presidente = derivePresidente(people);
   const sindica = deriveSindica(people);
-  // El resto del directorio (la página ya excluyó a los regidores). Conserva el
-  // orden que trae `people` (ordenarPorJerarquia en la página).
-  const subordinados = people.filter(
-    (p) => p && p.tipo !== "presidente" && p.tipo !== "sindica",
-  );
+  // Subordinados: todos menos las cabezas ya derivadas (excluidas por REFERENCIA, no
+  // por tipo), así un 2º presidente/síndico (cargo repetido) entra al grid en vez de
+  // descartarse. La página ya excluyó a los regidores; conserva el orden de `people`.
+  const subordinados = deriveSubordinados(people);
 
   return (
     <>
